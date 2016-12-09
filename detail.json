@@ -1,0 +1,85 @@
+{
+  "$jason": {
+    "head": {
+      "title": "{{$params.name}}",
+      "description": "Switch details view"
+    },
+    "body": {
+      "style": {
+        "background": "#1d1f21",
+        "color": "#c5c8c6",
+        "border": "none"
+      },
+      "header": {
+        "title": {
+          "type": "label",
+          "text": "switch {{$params.id}}"
+        },
+        "style": {
+          "background": "#1d1f21",
+          "font": "AvenirNext-Heavy",
+          "shy": "true",
+          "size": "14",
+          "color": "#ffffff"
+        }
+      },
+      "sections": [
+        {
+          "items": [
+            {
+              "type": "label",
+              "text": "name",
+              "style": {
+                "font": "HelveticaNeue-CondensedBold",
+                "size": "14",
+                "color": "#969896"
+              }
+            },
+            {
+              "type": "textfield",
+              "name": "name",
+              "value": "{{$params.name}}",
+              "style": {
+                "color": "#ffffff"
+              }
+            },
+            {
+              "type": "label",
+              "text": "rf_code_on",
+              "style": {
+                "font": "HelveticaNeue-CondensedBold",
+                "size": "14",
+                "color": "#969896"
+              }
+            },
+            {
+              "type": "textfield",
+              "name": "rf_code_on",
+              "value": "{{$params.rf_code_on}}",
+              "style": {
+                "color": "#ffffff"
+              }
+            },
+            {
+              "type": "label",
+              "text": "rf_code_off",
+              "style": {
+                "font": "HelveticaNeue-CondensedBold",
+                "size": "14",
+                "color": "#969896"
+              }
+            },
+            {
+              "type": "textfield",
+              "name": "rf_code_off",
+              "value": "{{$params.rf_code_off}}",
+              "style": {
+                "color": "#ffffff"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

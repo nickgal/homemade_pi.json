@@ -1,0 +1,133 @@
+{
+  "$jason": {
+    "head": {
+      "title": "HomemadePi.json",
+      "description": "switches",
+      "actions": {
+        "$pull": {
+          "trigger": "fetch"
+        },
+        "$foreground": {
+          "trigger": "fetch"
+        },
+        "$show": {
+          "trigger": "fetch"
+        },
+        "$load": {
+          "trigger": "fetch"
+        },
+        "fetch": {
+          "type": "$network.request",
+          "options": {
+            "url": "http://192.168.101.106:4000/api/switches"
+          },
+          "success": {
+            "type": "$render"
+          }
+        }
+      },
+      "templates": {
+        "body": {
+          "style": {
+            "background": "#1d1f21",
+            "color": "#c5c8c6",
+            "border": "none"
+          },
+          "header": {
+            "title": {
+              "type": "label",
+              "text": "Switches"
+            },
+            "style": {
+              "background": "#1d1f21",
+              "font": "AvenirNext-Heavy",
+              "size": "14",
+              "shyt": "true",
+              "color": "#ffffff"
+            }
+          },
+          "sections": {
+            "{{#each $jason.data}}": {
+              "items": [
+                {
+                  "type": "horizontal",
+                  "action": {
+                    "type": "$href",
+                    "options": {
+                      "url": "http://localhost:8000/detail.json",
+                      "options": {
+                        "id": "{{id.toString()}}",
+                        "name": "{{name}}",
+                        "state": "{{state}}",
+                        "rf_code_on": "{{rf_code_on.toString()}}",
+                        "rf_code_off": "{{rf_code_off.toString()}}"
+                      }
+                    }
+                  },
+                  "style": {
+                    "align": "fill",
+                    "background": "#282a2e"
+                  },
+                  "components": [{
+                    "type": "label",
+                    "text": "{{name}}",
+                    "style": {
+                      "color": "#969896"
+                    }
+                  }, {
+                    "type": "button",
+                    "text": "ON",
+                    "style": {
+                      "height": "50",
+                      "width": "100",
+                      "background": "#b5bd68"
+                    },
+                    "action": {
+                      "type": "$network.request",
+                      "options": {
+                        "url": "http://192.168.101.106:4000/api/switches/{{id}}",
+                        "method": "PUT",
+                        "data": {
+                          "switch": {
+                            "state": "true"
+                          }
+                        }
+                      }
+                    }
+                  }, {
+                    "type": "button",
+                    "text": "OFF",
+                    "style": {
+                      "height": "50",
+                      "width": "100",
+                      "background": "#cc6666"
+                    },
+                    "action": {
+                      "type": "$network.request",
+                      "options": {
+                        "url": "http://192.168.101.106:4000/api/switches/{{id}}",
+                        "method": "PUT",
+                        "data": {
+                          "switch": {
+                            "state": "false"
+                          }
+                        }
+                      }
+                    }
+                  }]
+                },
+                {
+                  "type": "space",
+                  "style": {
+                    "background": "#81a2be",
+                    "height": "1"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,21 @@
   "$jason": {
     "head": {
       "title": "{{$params.name}}",
-      "description": "Switch details view"
+      "description": "Switch details view",
+      "actions": {
+        "update": {
+          "type": "$network.request",
+          "options": {
+            "url": "http://192.168.101.106:4000/api/switches/{{$params.id}}",
+            "method": "PUT",
+            "data": {
+              "switch": {
+                "name": "{{$get.name}}"
+              }
+            }
+          }
+        }
+      }
     },
     "body": {
       "style": {
@@ -75,6 +89,17 @@
               "value": "{{$params.rf_code_off}}",
               "style": {
                 "color": "#ffffff"
+              }
+            },
+            {
+              "type": "button",
+              "text": "save",
+              "style": {
+                "height": "50",
+                "background": "#b5bd68"
+              },
+              "action": {
+                "trigger": "update"
               }
             }
           ]

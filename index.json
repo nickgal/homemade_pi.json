@@ -54,7 +54,8 @@
                   "action": {
                     "type": "$href",
                     "options": {
-                      "url": "https://raw.githubusercontent.com/nickgal/homemade_pi.json/master/detail.json",
+                      "url": "http://localhost:8000/detail.json",
+                      "transition": "modal",
                       "options": {
                         "id": "{{id.toString()}}",
                         "name": "{{name}}",
